@@ -5,7 +5,13 @@ class ClientsController < ApplicationController
     end
 
     post "/clients" do
-        raise params.inspect
+        if valid_input
+            @client = Client.create(params)
+            session[:client_id] = @client.id
+            redirect "/clients/#{@client.id}"
+        else
+            redirect '/'
+        end
     end
     
     get '/login' do
@@ -13,9 +19,19 @@ class ClientsController < ApplicationController
     end
     
     post "/login" do
-       
-        
+       @client = client_username
+       if @client && client.authenticate(params[:password])
+           session[:client_id] = @client.id
+           redirect "/clients/#{@client.id}"
+       else
+           redirect '/'
+       end
     end
+
+    get "/clients/:id" do
+        erb :"/clients/show.html"
+    end
+
 
 
     private
@@ -47,9 +63,6 @@ class ClientsController < ApplicationController
     # POST: /clients
 
     # GET: /clients/5
-    get "/clients/:id" do
-        erb :"/clients/show.html"
-    end
 
     # GET: /clients/5/edit
     get "/clients/:id/edit" do

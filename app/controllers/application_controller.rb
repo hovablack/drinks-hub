@@ -12,4 +12,15 @@ class ApplicationController < Sinatra::Base
         erb :welcome
     end
 
+    helpers do
+        
+        def logged_in?
+            !!current_client
+        end
+
+        def current_client
+            @current_client ||= Client.find_by(id: session[:client_id])
+        end
+    end
+
 end
