@@ -4,17 +4,32 @@ class ClientsController < ApplicationController
         erb :'clients/new.html'
     end
 
-
     post "/clients" do
         raise params.inspect
     end
-
+    
+    get '/login' do
+        erb :"/clients/login.html"
+    end
+    
+    post "/login" do
+       
+        
+    end
 
 
     private
 
     def valid_input
         params[:username] != "" && params[:email] != "" && params[:passowrd] != ""
+    end
+
+    def client_userid
+        Client.find_by(id: params[:id])
+    end
+
+    def client_username
+        Client.find_by(username: params[:username])
     end
 
 
