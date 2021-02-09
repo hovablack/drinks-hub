@@ -5,4 +5,5 @@ raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.' if A
 
 
 run ApplicationController
+use DrinksController
 use ClientsController

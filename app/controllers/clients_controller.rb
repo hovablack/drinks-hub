@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
     
     post "/login" do
        @client = client_username
-       if @client && client.authenticate(params[:password])
+       if @client && @client.authenticate(params[:password])
            session[:client_id] = @client.id
            redirect "/clients/#{@client.id}"
        else
