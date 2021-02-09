@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
         def current_client
             @current_client ||= Client.find_by(id: session[:client_id])
         end
+
+        def authetication_required
+            redirect "/" if !logged_in?
+        end
     end
 
 end

@@ -1,6 +1,12 @@
 class DrinksController < ApplicationController
+    before '/drinks/*' do
+        authetication_required
+    end
 
-  
+    get "/drinks" do
+        @drinks = current_client.drinks
+        erb :"/drinks/index.html"
+    end
   
     get "/drinks/new" do
         erb :"/drinks/new.html"
@@ -21,9 +27,19 @@ class DrinksController < ApplicationController
     end
     
     get "/drinks/:id/edit" do
-        erb :"/drinks/edit.html"
+        @drink = drink_search
+        if @drink.client == current_client
+            erb :"/drinks/edit.html"
+        else
+            redirect "/clients/#{current_client.id}"
+        end
     end
 
+    patch "/drinks/:id" do
+        @drink = drink_search
+        @drink.update(name: params[:name], quantity: params[:quantity], category: params[:category])
+        redirect "/drinks/#{@drink.id}"
+    end
 
 
     private
@@ -52,18 +68,6 @@ class DrinksController < ApplicationController
         erb :"/drinks/index.html"
     end
 
-    # GET: /drinks/new
-
-    # POST: /drinks
-
-    # GET: /drinks/5
-
-    # GET: /drinks/5/edit
-
-    # PATCH: /drinks/5
-    patch "/drinks/:id" do
-        redirect "/drinks/:id"
-    end
 
     # DELETE: /drinks/5/delete
     delete "/drinks/:id/delete" do

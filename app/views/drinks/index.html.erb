@@ -1,1 +1,7 @@
-<h1>This is the Model's index page.</h1>
+<h2>ALL ORDERED DRINKS.</h2>
+
+<ul>
+    <% @drinks.each do |drink| %>
+        <li><a href="/drinks/<%= drink.id%>"><%= drink.name %></a></li>
+    <% end %>
+</ul>
