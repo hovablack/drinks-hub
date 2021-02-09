@@ -45,7 +45,7 @@ class DrinksController < ApplicationController
         redirect "/drinks/#{@drink.id}"
     end
 
-    delete 'drinks/:id/delete' do
+    delete "/drinks/:id" do
         @drink = drink_search
         if @drink.client == current_client
             @drink.destroy
