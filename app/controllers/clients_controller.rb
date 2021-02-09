@@ -4,7 +4,11 @@ class ClientsController < ApplicationController
     end
     
     get '/register' do
-        erb :'clients/new.html'
+        if logged_in?
+            redirect "/clients/#{current_client.id}" 
+        else
+            erb :'clients/new.html'
+        end
     end
 
     post "/clients" do
@@ -18,7 +22,11 @@ class ClientsController < ApplicationController
     end
     
     get '/login' do
-        erb :"/clients/login.html"
+        if logged_in?
+            redirect "/clients/#{current_client.id}"
+        else
+            erb :"/clients/login.html" 
+        end
     end
     
     post "/login" do
