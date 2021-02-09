@@ -1,1 +1,24 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>CREATE DRINK ORDER.</h1>
+
+<form action="/drinks" method="POST">
+    <p>
+        <label for="drink_name">Drink Name</label>
+        <input type="text" id="drink_name" name="name">
+    </p>
+
+    <p>
+        <label for="drink_quantity">No. of Drink(s)</label>
+        <input type="text" id="drink_quantity" name="quantity">
+    </p>
+
+    <p>
+        <label for="drink_category">Category</label>
+        <select class=" "id="drink_category" name="category">
+            <option value="Alcoholic">Alcoholic</option>
+            <option value="Non-Alcoholic">Non-Alcoholic</option>
+        </select>
+    </p>
+
+    <a href="/clients/<%= current_client.id %>">Cancel</a>
+    <input type="submit" value="Place Order">
+</form>

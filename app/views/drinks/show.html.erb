@@ -1,1 +1,13 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h2>CURRENT DRINK ORDER.</h2>
+
+<div class="card">
+    <h4 class="card-header"><%= @drinks.name.upcase %></h4>
+    <br />
+    <p>
+        The type of drink you ordered is <%= @drinks.category %>,
+        and you requested for <%= @drinks.quantity %> drink(s).
+    </p>
+    <p>
+        <a href="/drinks/<%= @drinks.id %>/edit" class="btn btn-primary">Edit Order</a>
+    </p>
+</div>
