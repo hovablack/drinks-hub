@@ -1,13 +1,18 @@
 <h2>CURRENT DRINK ORDER.</h2>
 
 <div class="card">
-    <h4 class="card-header"><%= @drinks.name.upcase %></h4>
+    <h4 class="card-header"><%= @drink.name.upcase %></h4>
     <br />
     <p>
-        The type of drink you ordered is <%= @drinks.category %>,
-        and you requested for <%= @drinks.quantity %> drink(s).
+        The type of drink you ordered is <%= @drink.category %>,
+        and you requested for <%= @drink.quantity %> drink(s).
     </p>
     <p>
-        <a href="/drinks/<%= @drinks.id %>/edit" class="btn btn-primary">Edit Order</a>
+        <a href="/drinks/<%= @drink.id %>/edit" class="">Edit Order</a>
+        <a href="/drinks" class="">Confirm</a>
     </p>
+    <form action="/drinks/<%= @drink.id %>/delete" method="POST"
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Order">
+    </form>
 </div>

@@ -1,4 +1,7 @@
 class ClientsController < ApplicationController
+    before '/clients/*' do
+        authetication_required
+    end
     
     get '/register' do
         erb :'clients/new.html'
@@ -30,7 +33,11 @@ class ClientsController < ApplicationController
 
     get "/clients/:id" do
         @client = client_userid
-        erb :"/clients/show.html"
+        if @client == current_client
+            erb :"/clients/show.html"
+        else
+            redirect "/clients/#{current_client.id}"
+        end
     end
 
 

@@ -1,7 +1,7 @@
 <h2>ALL ORDERED DRINKS.</h2>
 
 <ul>
-    <% @drinks.each do |drink| %>
-        <li><a href="/drinks/<%= drink.id%>"><%= drink.name %></a></li>
+    <% @drink.each do |drink| %>
+        <li><a href="/drinks/<%= drink.id%>"><%= drink.name.capitalize %></a></li>
     <% end %>
 </ul>

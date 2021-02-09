@@ -4,7 +4,7 @@ class DrinksController < ApplicationController
     end
 
     get "/drinks" do
-        @drinks = current_client.drinks
+        @drink = current_client.drinks
         erb :"/drinks/index.html"
     end
   
@@ -22,8 +22,12 @@ class DrinksController < ApplicationController
     end
 
     get "/drinks/:id" do
-        @drinks = drink_search
-        erb :"/drinks/show.html"
+        @drink = drink_search
+        if @drink.client == current_client
+            erb :"/drinks/show.html"
+        else
+            redirect "/clients/#{current_client.id}"
+        end
     end
     
     get "/drinks/:id/edit" do
@@ -41,6 +45,19 @@ class DrinksController < ApplicationController
         redirect "/drinks/#{@drink.id}"
     end
 
+    delete 'drinks/:id/delete' do
+        @drink = drink_search
+        if @drink.client == current_client
+            @drink.destroy
+            redirect "/drinks"
+        else
+            redirect "/clients/#{current_client.id}"
+        end
+    end
+
+
+
+
 
     private
 
@@ -56,21 +73,4 @@ class DrinksController < ApplicationController
         Drink.find(params[:id])
     end
 
-
-
-
-
-
-  
-  
-        # GET: /drinks
-    get "/drinks" do
-        erb :"/drinks/index.html"
-    end
-
-
-    # DELETE: /drinks/5/delete
-    delete "/drinks/:id/delete" do
-        redirect "/drinks"
-    end
 end
