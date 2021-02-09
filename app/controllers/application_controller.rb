@@ -12,6 +12,11 @@ class ApplicationController < Sinatra::Base
         erb :welcome
     end
 
+    get '/logout' do
+        session.clear
+        redirect '/'
+    end
+
     helpers do
         
         def logged_in?

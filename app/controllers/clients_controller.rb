@@ -29,6 +29,7 @@ class ClientsController < ApplicationController
     end
 
     get "/clients/:id" do
+        @client = client_userid
         erb :"/clients/show.html"
     end
 
