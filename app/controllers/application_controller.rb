@@ -21,6 +21,19 @@ class ApplicationController < Sinatra::Base
         erb :about
     end
 
+    get '/sponsors/bbabout' do
+        erb :'/sponsors/bbabout'
+    end
+    get '/sponsors/ndabout' do
+        erb :'/sponsors/ndabout'
+    end
+    get '/sponsors/psabout' do
+        erb :'/sponsors/psabout'
+    end
+    get '/sponsors/tcabout' do
+        erb :'/sponsors/tcabout'
+    end
+
     helpers do
         
         def logged_in?

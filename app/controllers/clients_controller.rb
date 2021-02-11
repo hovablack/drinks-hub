@@ -85,19 +85,8 @@ class ClientsController < ApplicationController
         Client.find_by(username: params[:username])
     end
 
-
-
-    # GET: /clients
-
-    # GET: /clients/new
-    get "/clients/new" do
-        erb :"/clients/new.html"
-    end
-
-    # PATCH: /clients/5
-
     # DELETE: /clients/5/delete
-    delete "/clients/:id/delete" do
-        redirect "/clients"
-    end
+    # delete "/clients/:id/delete" do
+    #     redirect "/clients"
+    # end
 end
