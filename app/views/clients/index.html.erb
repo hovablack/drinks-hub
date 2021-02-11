@@ -1,1 +1,7 @@
 <h1>CLIENT REGISTRY.</h1>
+
+<ul>
+    <% @client.each do |client| %>
+        <li><%= client.username.upcase %></a></li>
+    <% end %>
+</ul>

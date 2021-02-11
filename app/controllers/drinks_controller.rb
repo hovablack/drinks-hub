@@ -70,7 +70,7 @@ class DrinksController < ApplicationController
     end
 
     def drink_search
-        Drink.find_by(params[:id])
+        Drink.find_by(id: params[:id])
     end
 
 end

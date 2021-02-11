@@ -17,6 +17,10 @@ class ApplicationController < Sinatra::Base
         redirect '/'
     end
 
+    get '/about' do
+        erb :about
+    end
+
     helpers do
         
         def logged_in?
